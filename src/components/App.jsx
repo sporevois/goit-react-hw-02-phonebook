@@ -1,5 +1,8 @@
 import { Component } from "react";
+import { nanoid } from "nanoid";
 import Section from "./Section/Section";
+import FormAddContact from "./FormAddContact";
+import ContatList from "./ContactList";
 
 export class App extends Component {
 
@@ -8,42 +11,28 @@ export class App extends Component {
     name: ''
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // const { name } = this.state;
-    // this.props.onSubmit({ ...this.state });
-    this.setState({
-      name: ''
+  addContact = (contact) => {
+    this.setState((prevState) => {
+      const newContact = {
+          id: nanoid(),
+          ...contact
+      }
+      return {
+        contacts: [...prevState.contacts, newContact]
+        
+      }
     })
   }
 
-  handleChange = (event) => {
-    this.setState({ name: event.target.value });
-  }
-
   render() {
-    const { name } = this.state;
+    const { contacts } = this.state;
      return (
       <>
         <Section title="Phonebook">
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name
-              <input
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-                value = {name}
-                onChange={this.handleChange}
-              />
-            </label>
-            <button type="submit">Add contact</button>
-          </form>
+          <FormAddContact onSubmit={this.addContact}/>
         </Section>
         <Section title="Contacts">
-        
+           <ContatList contacts={contacts}/>
         </Section>
       </>
     )
