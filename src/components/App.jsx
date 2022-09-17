@@ -72,8 +72,8 @@ export class App extends Component {
 
      return (
        <div style={{
-        padding: "20px",
-        fontSize: "24px",
+        padding: "15px",
+        fontSize: "20px",
         color: "#010101"
       }}>
          <h1>Phonebook</h1>        

@@ -17,7 +17,7 @@
     margin-top: 10px;
     margin-bottom: 15px;
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 4px;
 }
 .field:focus{
@@ -34,7 +34,7 @@
     color: black;
     background-color: rgb(234, 232, 232);
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .btn:hover { 
