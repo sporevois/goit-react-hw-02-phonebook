@@ -1,0 +1,12 @@
+.title{
+    display: flex;
+    flex-direction: column;
+}
+
+.field{
+    width: 250px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    font-size: 20px;
+}

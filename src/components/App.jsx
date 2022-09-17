@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { nanoid } from "nanoid";
-import FormAddContact from "./FormAddContact";
-import ContatList from "./ContactList";
-import Filter from "./Filter";
+import FormAddContact from "./FormAddContact/FormAddContact";
+import ContatList from "./ContactList/ContactList";
+import Filter from "./Filter/Filter";
 
 export class App extends Component {
 
@@ -37,6 +37,15 @@ export class App extends Component {
     })
   }
 
+  deleteContact = (id) => {
+    this.setState((prevState) => {
+      const refreshedContacts = prevState.contacts.filter((contact) => contact.id !== id);
+      return {
+        contacts: refreshedContacts
+      }
+    })
+  }
+  
   getFilteredContacts() {
     const { contacts, filter } = this.state;
     if (!filter) {
@@ -60,10 +69,11 @@ export class App extends Component {
   render() {
     const { filter } = this.state;
     const contacts = this.getFilteredContacts();
+
      return (
        <div style={{
         padding: "20px",
-        fontSize: "36px",
+        fontSize: "24px",
         color: "#010101"
       }}>
          <h1>Phonebook</h1>        
@@ -72,7 +82,9 @@ export class App extends Component {
          <Filter
            handleChange={this.handleChange}
            filter={filter} />
-         <ContatList contacts={contacts} />
+         <ContatList
+           contacts={contacts}
+           deleteContact={this.deleteContact} />
       </div>
     )
   }
