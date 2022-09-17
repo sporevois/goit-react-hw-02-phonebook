@@ -8,7 +8,7 @@ export class App extends Component {
 
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
       {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
@@ -22,6 +22,9 @@ export class App extends Component {
   }
 
   addContact = (contact) => {
+    if (this.isDublicate(contact.name)) {
+      return alert(`${contact.name} is already in contacts.`)
+    }
     this.setState((prevState) => {
       const newContact = {
           id: nanoid(),
@@ -46,6 +49,12 @@ export class App extends Component {
       return result;
     })
     return filteredContacts;
+  }
+
+  isDublicate(name) {
+    const { contacts } = this.state;
+    const result = contacts.find((contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+    return result
   }
 
   render() {

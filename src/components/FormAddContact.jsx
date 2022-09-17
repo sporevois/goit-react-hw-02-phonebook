@@ -11,8 +11,8 @@ export default class FormAddContact extends Component {
         console.log(this.props)
         this.props.onSubmit({ name, number });
         this.setState({
-            name: " ",
-            number: " ",
+            name: '',
+            number: '',
         })
     }
 
@@ -20,7 +20,8 @@ export default class FormAddContact extends Component {
         const { name, value } = event.target;
         this.setState({ [name]: value });
     }
-    
+
+   
     render() {
         const { name, number } = this.state;
         return (
