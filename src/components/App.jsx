@@ -68,6 +68,7 @@ export class App extends Component {
 
   render() {
     const { filter } = this.state;
+    const { addContact, handleChange, deleteContact } = this;
     const contacts = this.getFilteredContacts();
 
      return (
@@ -77,14 +78,14 @@ export class App extends Component {
         color: "#010101"
       }}>
          <h1>Phonebook</h1>        
-         <FormAddContact onSubmit={this.addContact} />
+         <FormAddContact onSubmit={addContact} />
          <h2>Contacts</h2>
          <Filter
-           handleChange={this.handleChange}
+           handleChange={handleChange}
            filter={filter} />
          <ContatList
            contacts={contacts}
-           deleteContact={this.deleteContact} />
+           deleteContact={deleteContact} />
       </div>
     )
   }
