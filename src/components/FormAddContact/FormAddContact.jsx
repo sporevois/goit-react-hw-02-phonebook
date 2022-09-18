@@ -9,7 +9,6 @@ export default class FormAddContact extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { name, number } = this.state;
-        console.log(this.props)
         this.props.onSubmit({ name, number });
         this.setState({
             name: '',
